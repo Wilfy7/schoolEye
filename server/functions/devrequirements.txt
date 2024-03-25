@@ -1,0 +1,8 @@
+chalk@3
+morgan
+@types/morgan
+nodemon
+@types/nodemon
+ts-node
+bcrypt
+@types/bcrypt

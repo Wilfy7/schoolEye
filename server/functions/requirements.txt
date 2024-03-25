@@ -1,0 +1,11 @@
+express
+@types/express
+mongoose
+@types/mongoose
+cors
+@types/cors
+dotenv
+@types/dotenv
+axios
+@types/axios
+slugify
