@@ -38,6 +38,11 @@ export const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
+    },
+    post: {
+        type: String,
+        required: true,
+        trim: true
     }
 
 })

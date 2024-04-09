@@ -8,4 +8,5 @@ export interface IUser extends Document{
    position: string;
    address: string;
    postCode: string
+   post: string
 }

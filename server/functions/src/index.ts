@@ -5,6 +5,7 @@ import cors from "cors";
 import userRouter from "./routes/userRouter";
 import childRouter from "./routes/childRouter";
 import schoolRouter from "./routes/schoolRouter";
+import postRouter from "./routes/postRouter";
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.get("/", (req: express.Request, res: express.Response) => {
 app.use("/api/v1", userRouter);
 app.use("/api/v1", childRouter );
 app.use("/api/vi", schoolRouter );
+app.use("/api/v1", postRouter);
 
 //Handle unknown routes (404 Not Found)
 app.use("/", (req: express.Request, res: express.Response) => {

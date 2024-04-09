@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { 
     createSchool, 
+    deleteSchool, 
     getSchools, 
     getSingleSchool, 
     updateSchool 
@@ -17,6 +18,8 @@ schoolRouter.get("/school/all", getSchools);
 schoolRouter.get("/school/:id", getSingleSchool);
 
 schoolRouter.put("/school/update/:id", updateSchool)
+
+schoolRouter.delete("/school/dlete/:id", deleteSchool);
 
 
 export default schoolRouter;
