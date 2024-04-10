@@ -39,15 +39,7 @@ export const loginUser = async (user: any) => {
   }
 };
 
-export const logOutUser = () => {
-  try {
-    localStorage.removeItem("schoolEye");
-    window.location.href = "/login";
 
-  } catch (error) {
-    console.log(error)
-  }
-};
 
  //Get all Users
 export const getAllUsers = async () => {
@@ -77,6 +69,47 @@ export const getUser = async (id: string) => {
   } catch (error) {
     console.log(error)
   }
-}
+};
+
+//Update a user 
+export const UpdateUser = async (id: string, editData: any) => {
+  try {
+    const res = await axios.put(`${baseUrl}/users/update/${id}`, {
+      editData,
+      headers: {
+        Authorization: token
+      }
+    });
+    return res.data
+
+  } catch (error) {
+    console.log(error)
+  }
+};
+
+//Delete a user 
+export const deleteUser = async (id: string) => {
+  try {
+    const res = await axios.delete(`${baseUrl}/users/delete/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    return res.data.message;
+
+  } catch (error) {
+    console.log(error)
+  }
+};
+
+export const logOutUser = () => {
+  try {
+    localStorage.removeItem("schoolEye");
+    window.location.href = "/login";
+
+  } catch (error) {
+    console.log(error)
+  }
+};
 
 
