@@ -1,11 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./NavbarStyles.scss"
-import { token } from "../../../service/user.service";
+import { logOutUser, token } from "../../../service/user.service";
 
 
 const Navbar = () => {
   const user = token
+
+  const handleLogout = () => {
+     logOutUser();
+  }
 
   return (
     <nav className="globalstyles navbar navbar-expand-lg bg-body-tertiary">
@@ -19,7 +23,7 @@ const Navbar = () => {
         color: "inherit",
         textDecoration: "none"
       }}
-    to="/status">SCHEYE</NavLink>
+    to="/">SCHEYE</NavLink>
       
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -47,21 +51,33 @@ const Navbar = () => {
               <li> <NavLink className="nav-link pagestext" to="/">Gallery</NavLink></li>
               <li> <NavLink className="nav-link pagestext" to="/">Messages</NavLink></li>
               <li> <NavLink className="nav-link pagestext" to="/">Profile</NavLink></li>
+              { //If not a user show me login
+            !user &&(
+              <NavLink className="nav-link pagestext"  to="/login">
+                Login
+              </NavLink>
+            )} 
+
+            { //If user Display logout
+            user && (
+              <span  onClick={handleLogout} style={{cursor: "pointer", marginLeft:"10px"}}>
+                 Logout
+              </span>
+            )}
               <li>
               {
           //If not a user show me register
           !user && (
-            <NavLink to="/registration" className="nav-link pagestext">
-              Register
-            </NavLink>
-          )
-        }
+               <NavLink to="/registration" className="nav-link pagestext">
+                
+               </NavLink>
+             )
+            }
               </li>
             </ul>
           </li>
-          
         </ul>
-      
+           
       </div>
     </div>
   </nav>

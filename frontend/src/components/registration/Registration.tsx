@@ -8,7 +8,8 @@ const Registration = () => {
         fullName: "",
         email: "",
         password: "",
-        child: ""
+        child: "",
+        position: ""
     });
     
     //Navigate from the registration
@@ -65,9 +66,9 @@ const handleSubmit = (e: any) => {
           value={input.email}
           onChange={handleInputChange}
         />
-    <div 
-        id="emailHelp" className="form-text">
-    </div>
+      <div id="emailHelp" className="form-text">
+            Your data is safe with us 
+      </div>
     </div>
     <div className="mb-3">
         <label 
@@ -99,12 +100,26 @@ const handleSubmit = (e: any) => {
           onChange={handleInputChange}
         />
     </div>
-     <button 
-       type="submit" 
-       className="btn btn-primary"
-     >
-        Submit
-     </button>
+    <div className="mb-3">
+        <label 
+          className="form-label" 
+          htmlFor="exampleInputPosition1">
+            Position
+        </label>
+        <input 
+          type="child" 
+          className="form-control" 
+          id="exampleInputPosition1" 
+          name="position"
+          value={input.position}
+          onChange={handleInputChange}
+        />
+    </div>
+    <button type="submit" className="btn btn-secondary"
+          style={{marginTop: "1rem"}}
+        >
+            Register
+        </button>
    </form>
   </div>
 </div>
