@@ -9,6 +9,8 @@ const Login = () => {
        password: ""
     });
 
+    console.log(input)
+
     //navigate to homepage when user login
     const navigate = useNavigate()
 
@@ -20,7 +22,7 @@ const Login = () => {
         });
     };
 
-    const hanndleSubmit = (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
 
         loginUser(input);
@@ -32,7 +34,7 @@ const Login = () => {
   <div className="resgistration__container">
     <div className="resgistration__content">
       <h2>Login User</h2>
-      <form onSubmit={hanndleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
             <label className= "form-label" htmlFor="emailInput">
                Email 

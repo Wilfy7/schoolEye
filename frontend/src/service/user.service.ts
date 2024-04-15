@@ -40,8 +40,7 @@ export const loginUser = async (user: any) => {
 };
 
 
-
- //Get all Users
+//Get all Users
 export const getAllUsers = async () => {
   try {
     const res = await axios.get(`${baseUrl}/users/all`, {

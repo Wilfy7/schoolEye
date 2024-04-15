@@ -5,8 +5,8 @@
 }
 
 .homely {
-    height: 20rem;
-    width: 30rem;
+    height: 10rem;
+    width: 40rem;
     margin: 0rem auto;
     border: 1px solid gray;
     align-content: center;
@@ -15,3 +15,35 @@
     border-radius: 0.7rem;
     box-shadow: 2rem;
 }
+
+ .card-userIni {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 100%;
+   border: 0.1rem solid gray;
+   background-color: cornflowerblue;
+}
+
+.userName {
+    position: absolute;
+    left: 4.5rem;
+}
+
+
+.card {
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+    padding: 40px 15px;
+    margin: 10px;
+    margin-left: 6rem;
+    max-width: 600px;
+    
+}
+
+.card-text {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    margin-bottom: 10px;
+}
+

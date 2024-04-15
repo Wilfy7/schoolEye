@@ -43,7 +43,7 @@ const index = () => {
           <Route path="login" element={<Navigate to="/" />} />
         )}
 
-        
+        <Route path="/posts/all" element={<Home />}/>
         <Route path="/status" Component={Status}/>
         <Route path="/post" Component={Contents} />
       </Routes>

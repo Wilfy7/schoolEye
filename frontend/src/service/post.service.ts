@@ -23,7 +23,7 @@ export const getAllPosts = async () => {
         Authorization: token
       }
     });
-    return res.data.contentData
+    return res.data
   } catch (error) {
     console.log(error)
   }
@@ -38,6 +38,7 @@ export const getSinglePost = async () => {
       }
     });
     return res.data
+
   } catch (error) {
     console.log(error)
   }
