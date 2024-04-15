@@ -36,7 +36,9 @@ const Home = () => {
          <div className="card-userIni">
               
          </div>
-         <p className="userName">{posting.user?.fullName}</p>
+         <p className="userName">{posting.user?.fullName}
+          <p style={{fontSize: "10px"}}>{posting.createdAt}</p>
+         </p>
          <div className="card-text">
           {posting.post}
          </div>
