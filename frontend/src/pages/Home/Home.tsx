@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./HomeStyles.scss"
 import { getAllPosts } from "../../service/post.service";
+import { format } from "date-fns";
+
 
 const Home = () => {
    const [posting, setPosting]: any = useState([]);
@@ -36,10 +38,14 @@ const Home = () => {
          <div className="card-userIni">
               
          </div>
-         <p className="userName">{posting.user?.fullName}
-          <p style={{fontSize: "10px"}}>{posting.createdAt}</p>
-         </p>
-         <div className="card-text">
+         <div className="card-title ">
+         <span className="userName " >
+          {posting.user?.fullName}</span>
+          <span style={{fontSize: "10px"}}>
+            {format(new Date (posting.createdAt), "EE d MMM yyy")}
+            {format(new Date(posting.createdAt), "hh:mm a")}</span>
+          </div>
+         <div className="card-text card-body "> 
           {posting.post}
          </div>
        </div>
