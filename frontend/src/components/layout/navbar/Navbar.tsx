@@ -51,6 +51,8 @@ const Navbar = () => {
               <li> <NavLink className="nav-link pagestext" to="/">Gallery</NavLink></li>
               <li> <NavLink className="nav-link pagestext" to="/">Messages</NavLink></li>
               <li> <NavLink className="nav-link pagestext" to="/">Profile</NavLink></li>
+              <li> <NavLink className="nav-link pagestext" to="/child">Register Child</NavLink></li>
+
               { //If not a user show me login
             !user &&(
               <NavLink className="nav-link pagestext"  to="/login">

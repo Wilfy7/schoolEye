@@ -6,7 +6,7 @@ const baseUrl = process.env.REACT_APP_API
 const userData: any = localStorage.getItem("schoolEye");
 
 //Convert the retrieved data to json
-const tokenData  = JSON.parse(userData);
+export const tokenData = JSON.parse(userData);
 
 //Get the token from the data
 export const { token } = tokenData || "";
@@ -110,5 +110,6 @@ export const logOutUser = () => {
     console.log(error)
   }
 };
+
 
 

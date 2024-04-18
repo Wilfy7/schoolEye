@@ -3,17 +3,14 @@ import "./PostStyles.scss"
 import { createPost } from "../../service/post.service";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { tokenData } from "../../service/user.service";
 
 
 const Contents = () => {
 
-  const getUserData: any = localStorage.getItem("schoolEye");
-
-  const userData = JSON.parse(getUserData)
-
   //Using the question mark means is optional in typescript terms
   //getting the user id from the user data
-  const userId = userData?.user._id 
+  const userId = tokenData.user._id
 
     const [content, setContent] = useState({
       user: userId,
@@ -39,7 +36,8 @@ const handleSubmit = async (e: any) => {
     post: "",
     user: ""
   })
-}
+};
+
 
   return (
   <div className="container">

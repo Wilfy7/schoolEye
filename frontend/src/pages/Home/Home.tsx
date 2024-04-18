@@ -5,6 +5,8 @@ import { format } from "date-fns";
 
 
 const Home = () => {
+
+
    const [posting, setPosting]: any = useState([]);
    
    
@@ -22,6 +24,8 @@ const Home = () => {
     }
    }, [])
 
+  
+
   return (
   <>
     <div>
@@ -36,7 +40,8 @@ const Home = () => {
              className="card justify-content-center ">
        
          <div className="card-userIni">
-              
+          {posting.user?.fullName[0]}
+         {posting.user?.fullName.split(" ")[1]?.charAt(0)}
          </div>
          <div className="card-title ">
          <span className="userName " >
@@ -45,7 +50,9 @@ const Home = () => {
             {format(new Date (posting.createdAt), "EE d MMM yyy")}
             {format(new Date(posting.createdAt), "hh:mm a")}</span>
           </div>
-         <div className="card-text card-body "> 
+          <div className="postContainer ">
+           <div className="card-text card-body "> 
+          </div>
           {posting.post}
          </div>
        </div>
