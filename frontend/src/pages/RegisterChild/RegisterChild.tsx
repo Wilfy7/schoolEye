@@ -1,7 +1,11 @@
 import React, { useState } from "react"
+import { registerChild } from "../../service/child.service";
 
 const RegisterChild = () => {
+
+
   const [input, setInput] = useState({
+  
     childName: "",
     parent: "",
     childClass: ""
@@ -17,7 +21,15 @@ const RegisterChild = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-  }
+
+    registerChild(input)
+    
+    setInput({
+      childName: "",
+      parent: "",
+      childClass: ""
+    })
+  };
 
   return (
     <>

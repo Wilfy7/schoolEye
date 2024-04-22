@@ -1,52 +1,77 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ToastContainer, toast } from "react-toastify";
+import { getAllChildren } from "../../service/child.service";
+//import { token } from "../../service/child.service";
 
 const Status = () => {
-  const [checkIn, setCheckIn] = useState(false);
-  const [checkOut, setCheckOut] = useState(false);
+  
+  //Get the children id from the data
+  const [children, setChildren] = useState([]);
+  const [isCheckIn, setIsCheckIn] = useState(true);
+  const [color, setColor] = useState("");
 
+  useEffect(() => {
+    const fetchChildren = async () => {
+      try {
+        const childrenData = await getAllChildren();
+        console.log(childrenData)
+        setChildren(childrenData.data);
 
-  const handleCheckIn = () => {
-    setCheckIn(true);
-    setCheckOut(false);
-    toast("Checked in successfully");
+      } catch (error: any) {
+        toast("error fetching the children", error)
+      }
+    };
+
+    fetchChildren();
+  },[]);
+
+  const handleToggleCheck = (child: any) => {
+    try {
+       if (color === child) {
+        setColor("");
+       } else {
+        setColor(child)
+       }
+
+      const control = isCheckIn ? "Checked in" : "Checked out";
+      toast.success(`${control} successfully`);
+      setIsCheckIn(!isCheckIn);
+      
+    } catch (error: any) {
+      toast(`Failed to ${isCheckIn ? "check in" : "check out"}`);
+    }
   };
-
-
-  const handleCheckOut = () => {
-    setCheckOut(true);
-    setCheckIn(false);
-    toast("Checked out successfully");
-  };
+  
 
   return (
     <div className="d-flex justify-content-center">
       <ToastContainer />
-      <div>
-        <button 
-          onClick={handleCheckIn} 
-          disabled={checkIn} 
-          className="btn btn-primary" 
-          style={{marginTop: "10rem"}}
-        >
-          Check In
-        </button>
-        {checkIn &&<p>You are checked in</p> }
-        <div className="">
-        <button 
-           onClick={handleCheckOut} 
-           disabled={checkOut} 
-           className="btn btn-primary" 
-           style={{marginTop: "3rem" }}
-        >
-          check Out
-        </button>
+      <div className="checkInAndOut">
+        {children.map((child: any)=> (
+          <div key={child._id}>
+
+         <div className="card col-md-6"  
+         style={{
+          marginTop: "7rem", 
+          height:"160px", 
+          width:"200px",
+          border: "none",
+          justifyContent: "center",
+          backgroundColor: color === child._id ? "#aad2eb" : "#5fa3cd",
+          cursor: "pointer"
+          }}
+          onClick={() => handleToggleCheck(child._id)} 
+          >
+        <div>
+          {child.childName[0]}
+          {child.childName.split(" ")[1]?.charAt(0)}
         </div>
-        
-        {checkOut && <p>You are checked out</p> }
+      </div>
+      </div>
+      ))}
       </div>
     </div>
   )
-}
+};
 
 export default Status;

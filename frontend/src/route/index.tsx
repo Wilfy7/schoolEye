@@ -13,6 +13,7 @@ import Registration from "../components/registration/Registration";
 import { token } from "../service/user.service";
 import Login from "../pages/Login/Login";
 import RegisterChild from "../pages/RegisterChild/RegisterChild";
+import Profile from "../pages/Profile/Profile";
 
 const index = () => {
   const user = token
@@ -44,10 +45,17 @@ const index = () => {
           <Route path="login" element={<Navigate to="/" />} />
         )}
 
+        {!user ? (
+          <Route path="/profile" Component={Profile} />
+        ):(
+          <Route path="profile" element={<Navigate to="/" />} />
+        )}
+
         
         <Route path="/posts/all" element={<Home />}/>
         <Route path="/status" Component={Status}/>
         <Route path="/post" Component={Contents} />
+
 
         {!user ? (
         <Route path="/child" Component={Login} />
