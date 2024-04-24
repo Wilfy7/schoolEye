@@ -14,7 +14,6 @@ const Status = () => {
     const fetchChildren = async () => {
       try {
         const childrenData = await getAllChildren();
-        console.log(childrenData)
         setChildren(childrenData.data);
 
       } catch (error: any) {

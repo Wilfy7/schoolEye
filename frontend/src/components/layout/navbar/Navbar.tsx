@@ -34,7 +34,7 @@ const Navbar = () => {
             <NavLink className="nav-link pagestext" to="/status">Status</NavLink> 
          </li>
          <li className="nav-item">
-            <NavLink className="nav-link pagestext" to="/">Groups</NavLink>
+            <NavLink className="nav-link pagestext" to="/gallery">Gallery</NavLink>
          </li>
        
           <li className="nav-item dropdown">
@@ -48,9 +48,8 @@ const Navbar = () => {
             </NavLink>
             <ul className="dropdown-menu">
               <li> <NavLink className="nav-link pagestext" to="/post">Post</NavLink></li>
-              <li> <NavLink className="nav-link pagestext" to="/">Gallery</NavLink></li>
-              <li> <NavLink className="nav-link pagestext" to="/">Messages</NavLink></li>
-              <li> <NavLink className="nav-link pagestext" to="/">Profile</NavLink></li>
+              <li> <NavLink className="nav-link pagestext" to="/messages">Messages</NavLink></li>
+              <li> <NavLink className="nav-link pagestext" to="/profile">Profile</NavLink></li>
               <li> <NavLink className="nav-link pagestext" to="/child">Register Child</NavLink></li>
 
               { //If not a user show me login
