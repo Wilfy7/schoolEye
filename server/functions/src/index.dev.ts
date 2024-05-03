@@ -9,6 +9,7 @@ import userRouter from "./routes/userRouter";
 import childRouter from "./routes/childRouter";
 import schoolRouter from "./routes/schoolRouter";
 import postRouter from "./routes/postRouter";
+import galleryRouter from "./routes/galleryRouter";
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use("/api/v1", userRouter );
 app.use("/api/v1", childRouter );
 app.use("/api/v1", schoolRouter);
 app.use("/api/v1", postRouter);
+app.use("/api/v1", galleryRouter);
 
 app.listen(port, () => {
  console.log(chalk.yellowBright(`Server is running on port http://localhost:${port}`));

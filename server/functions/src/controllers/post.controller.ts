@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Content from "../models/content.model";
+import User from "../models/user.model";
 
 
 
@@ -7,9 +8,21 @@ import Content from "../models/content.model";
 export const createPost = async (req: Request, res: Response) => {
     try {
         //Get the post from the request body
-        const { post } = req.body;
+        const { post, user } = req.body;
 
-        //Check for post 
+        //find the user in the database by name
+        const nameUser = await User.findOne({name: post.user});
+
+        const userId = nameUser?._id;
+
+        //Check if user exist
+        if(!nameUser) {
+          return res.status(404).json({
+            message: "User not found",
+          });
+        }
+
+        //Check if post exist  
         if(!post) {
             return res.status(400).json({
                 message: "Enter post"
@@ -17,15 +30,16 @@ export const createPost = async (req: Request, res: Response) => {
         }
 
         const newPost =  new Content({
-            post
+            post,
+            user,
+            nameUser: userId
         })
 
-        const savedPost = newPost.save()
-
+        const savedPost = await newPost.save()
 
         return res.status(200).json({
             message: "Post made successfully",
-            savedPost
+            data: savedPost
         });
 
     } catch (error) {
@@ -37,10 +51,11 @@ export const createPost = async (req: Request, res: Response) => {
 
 export const getAllPosts = async (req: Request, res: Response) => {
     try {
-      //Get all post fromthe database
+      //Get all post from the database
       const allPosts = await Content.find()
-      .populate("user");
-      
+      .populate("user")
+      .sort({createdAt: -1})
+
       return res.status(200).json({
         message: "Posts fetched successfully",
         data: allPosts

@@ -6,3 +6,6 @@ nodemon
 ts-node
 bcrypt
 @types/bcrypt
+multer
+@types/multer
+path
