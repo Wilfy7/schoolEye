@@ -5,9 +5,9 @@ import Gallery from "../models/gallery.model";
 export const createGallery = async (req: Request, res: Response ) => {
     try {
         
-        const fileName = req.file;
+        const image = req.file;
         //Check if picture exist 
-        if(!fileName) 
+        if(!image) 
             return res.status(400).json({
                 message: "Please upload a file",
             });
@@ -15,7 +15,7 @@ export const createGallery = async (req: Request, res: Response ) => {
 
         //Handle file uploaded logic here
         const newFile = new Gallery({
-            fileName: req.file?.originalname
+            image: req.file?.originalname
         })
 
         //Save the file/image to the database
@@ -54,20 +54,24 @@ export const getAllImages = async (req: Request, res: Response) => {
 
 export const getImage = async (req: Request, res: Response) => {
     try {
-        const image = await Gallery.findById(req.params.id);
-        if(!image) {
+        const imageId = req.params.id;
+
+        const existingImage = await Gallery.findById(imageId)
+        if(!existingImage) {
             return res.status(400).json({
                 message: "Image not found"
             });
         }
 
         //Convert image buffer to base64 string
-        const baseImage = image.fileName.toString()
-        const dataurl = `data: ${image.fileName}; base64, ${baseImage}`;
-        return res.json({imageUrl: dataurl})
+        const baseImage = Buffer.from(existingImage.id).toString('base64')
+        const dataurl = `data:image/jpeg;base64,${baseImage}`;
+        return res.json({imageUrl: dataurl});
+
         
     } catch (error) {
-      console.log("Error fetching image");
-      throw error  
+      return res.status(500).json({
+        message: "Server error"
+      });
     }
 };

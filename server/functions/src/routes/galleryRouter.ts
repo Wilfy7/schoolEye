@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createGallery, getAllImages} from "../controllers/gallery.controller";
+import { createGallery, getAllImages, getImage} from "../controllers/gallery.controller";
 import multer from "multer"
 import path from "path";
 
@@ -16,9 +16,11 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 
-galleryRouter.post("/upload", upload.single("fileName"), createGallery);
+galleryRouter.post("/upload", upload.single("image"), createGallery);
 
 galleryRouter.get("/images/all", getAllImages);
+
+galleryRouter.get("/image/:id", getImage)
 
 
 

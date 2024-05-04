@@ -3,7 +3,7 @@ import { IGallery } from "../interface/gallery.interface";
 
 
 export const gallerySchema = new mongoose.Schema({
-    fileName: {
+    image: {
         type: String,
         data: Buffer,
         trim: true
