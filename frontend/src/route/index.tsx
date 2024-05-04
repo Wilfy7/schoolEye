@@ -15,7 +15,6 @@ import Login from "../pages/Login/Login";
 import RegisterChild from "../pages/RegisterChild/RegisterChild";
 import Profile from "../pages/Profile/Profile";
 import Gallery from "../pages/Gallery/Gallery";
-import Message from "../pages/Messages/Message";
 
 const index = () => {
   const user = token
@@ -58,7 +57,6 @@ const index = () => {
         <Route path="/status" Component={Status}/>
         <Route path="/post" Component={Contents} />
         <Route path="/gallery" Component={Gallery} />
-        <Route path="/messages" Component={Message} />
 
 
 

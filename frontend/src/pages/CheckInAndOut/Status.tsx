@@ -51,6 +51,7 @@ const Status = () => {
 
          <div className="card col-md-6"  
          style={{
+          marginLeft: "4rem",
           marginTop: "7rem", 
           height:"160px", 
           width:"200px",
