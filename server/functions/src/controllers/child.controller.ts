@@ -84,22 +84,20 @@ export const updateChild = async (req: Request, res: Response) => {
     const { id } = req.params;
     
     //Get child's info from request body
-    const child = req.body;
 
-    const childexist = await Child.findById(id);
+    const childexist = await Child.findByIdAndUpdate(id, req.body, {
+      new: true
+    });
+    console.log(childexist)
     if(!childexist) {
       return res.status(404).json({
         message: "Child not found"
       });
     }
 
-    const updatedChild = await Child.findByIdAndUpdate( id, child, {
-      new: true
-    })
-
     return res.status(200).json({
       message: "Child updated succefully",
-      dat: updatedChild
+      dat: childexist
     })
 
   } catch (error) {

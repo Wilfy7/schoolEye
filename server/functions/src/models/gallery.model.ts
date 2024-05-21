@@ -3,12 +3,19 @@ import { IGallery } from "../interface/gallery.interface";
 
 
 export const gallerySchema = new mongoose.Schema({
-    image: {
+    fileName: {
         type: String,
-        data: Buffer,
         trim: true
 
-    }
+    },
+mimeType: {
+    type: String,
+    trim: true
+},
+data: {
+    type: Buffer,
+    trim: true
+}
 });
 
 const Gallery = mongoose.model<IGallery>("Gallery", gallerySchema);

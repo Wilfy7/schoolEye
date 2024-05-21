@@ -9,3 +9,4 @@ bcrypt
 multer
 @types/multer
 path
+multer-gridfs-storage

@@ -1,24 +1,32 @@
 import { Request, Response } from "express"
 import Gallery from "../models/gallery.model";
+import { IGallery } from "../interface/gallery.interface";
 
 
 export const createGallery = async (req: Request, res: Response ) => {
     try {
         
-        const image = req.file;
         //Check if picture exist 
-        if(!image) 
-            return res.status(400).json({
-                message: "Please upload a file",
-            });
+        if(!req.file) {
+        return res.status(400).json({
+            message: "Please upload a file",
+        });
+
+       }
+       //Estract file data from the request
+        const {originalname, mimetype, buffer} = req.file;
         
 
         //Handle file uploaded logic here
-        const newFile = new Gallery({
-            image: req.file?.originalname
-        })
+        const newFileData: Partial<IGallery> = {
+            fileName: originalname,
+            mimeType: mimetype,
+            data: buffer
+        
+        }
 
         //Save the file/image to the database
+        const newFile = new Gallery(newFileData)
          await newFile.save();
 
 
@@ -27,7 +35,6 @@ export const createGallery = async (req: Request, res: Response ) => {
             data: newFile
         });
 
-    
 
     } catch (error) {
       return res.status(500).json({
@@ -39,7 +46,8 @@ export const createGallery = async (req: Request, res: Response ) => {
 
 export const getAllImages = async (req: Request, res: Response) => {
     try {
-        const images = await Gallery.find({})
+        const images = await Gallery.find({});
+        
         return res.status(200).json({
             message: "Images fetched successfully",
             data: images
@@ -48,7 +56,7 @@ export const getAllImages = async (req: Request, res: Response) => {
     } catch (error) {
       return res.status(500).json({
         message: "Error getting all images"
-      }) 
+      }); 
     }
 };
 
@@ -62,12 +70,9 @@ export const getImage = async (req: Request, res: Response) => {
                 message: "Image not found"
             });
         }
-
-        //Convert image buffer to base64 string
-        const baseImage = Buffer.from(existingImage.id).toString('base64')
-        const dataurl = `data:image/jpeg;base64,${baseImage}`;
-        return res.json({imageUrl: dataurl});
-
+       return res.status(200).json({
+        message: "Image fetched successfully"
+       });
         
     } catch (error) {
       return res.status(500).json({
