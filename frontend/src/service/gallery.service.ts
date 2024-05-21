@@ -5,14 +5,14 @@ const baseUrl = process.env.REACT_APP_API;
 
 
 //Upload image
-export const uploadImage = async (imageFile: any) => {
+export const uploadImage = async (image: any) => {
     try {
         //Validate file type and size
         //if (!imageFile || !imageFile.type.startsWith(`image/`) || imageFile.size)
         
         //Create formData object to send the file
         const formData = new FormData();
-        formData.append("image", imageFile)
+        formData.append("image", image)
 
         const res = await axios.post(`${baseUrl}/upload`, formData);
 

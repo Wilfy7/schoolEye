@@ -48,9 +48,10 @@ const Navbar = () => {
             </NavLink>
             <ul className="dropdown-menu">
               <li> <NavLink className="nav-link pagestext" to="/post">Post</NavLink></li>
-              <li> <NavLink className="nav-link pagestext" to="/messages">Messages</NavLink></li>
               <li> <NavLink className="nav-link pagestext" to="/profile">Profile</NavLink></li>
               <li> <NavLink className="nav-link pagestext" to="/child">Register Child</NavLink></li>
+              <li> <NavLink className="nav-link pagestext" to="/children">Children</NavLink></li>
+
 
               { //If not a user show me login
             !user &&(

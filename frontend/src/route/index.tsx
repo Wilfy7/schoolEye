@@ -15,6 +15,8 @@ import Login from "../pages/Login/Login";
 import RegisterChild from "../pages/RegisterChild/RegisterChild";
 import Profile from "../pages/Profile/Profile";
 import Gallery from "../pages/Gallery/Gallery";
+import Children from "../pages/getAllChildren/Children";
+import Child from "../pages/singleChild/Child";
 
 const index = () => {
   const user = token
@@ -57,8 +59,8 @@ const index = () => {
         <Route path="/status" Component={Status}/>
         <Route path="/post" Component={Contents} />
         <Route path="/gallery" Component={Gallery} />
-
-
+        <Route path="/children" Component={Children} />
+        <Route path="/child/:id" Component={Child} />
 
 
         {!user ? (

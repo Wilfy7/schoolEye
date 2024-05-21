@@ -28,7 +28,7 @@ const Gallery = () => {
 
   
   return (
-    <div className="gallery image-container img">
+    <div className="gallery">
       {images.length === 0 && <div>Loading...</div> }
       {images.length > 0 && 
       images.map((images: any) => (
@@ -37,13 +37,13 @@ const Gallery = () => {
        <div className="">
         <div style={{paddingTop: "10rem"}}> 
           <img  width={200} height={200} 
-          src={`/images/${images.imageUrl}`} alt={images.image}  /> 
+          src={`images/${images.image}`} alt={images.data} /> 
         </div>
        </div>
       </div> 
       ))}
     </div>
   )
-}
+};
 
 export default Gallery;

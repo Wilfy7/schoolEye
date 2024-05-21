@@ -31,12 +31,42 @@ export const getAllChildren = async () => {
     }
 };
 
-export const getSingleChild = async () => {
+export const getSingleChild = async (id: string) => {
     try {
-      const res = await axios.get(`${baseUrl}/child/{id}`);
+      const res = await axios.get(`${baseUrl}/child/${id}`);
       return res.data;
 
     } catch (error) {
       console.log(error)  
     }
 };
+
+export const updateChild = async ( id: string, childData:any) => {
+  try {
+    const res = await axios.put(`${baseUrl}/update-child/${id}`, childData);
+    return res.data;
+
+  } catch (error: any) {
+  if (error.response) {
+    // The request was made and the server responded with a status code
+    console.error('Server Error:', error.response.data);
+  } else if (error.request) {
+    // The request was made but no response was received
+    console.error('Network Error:', error.request);
+  } else {
+    // Something happened in setting up the request that triggered an error
+    console.error('Error:', error.message);
+  }
+  // Return null or throw the error to handle it in the caller function
+  throw error;
+  }
+};
+
+export const deleteChild = async (id: string) => {
+  try {
+    const res = await axios.delete(`${baseUrl}/child/delete/${id}`);
+    return res.data.message
+  } catch (error) {
+    console.log(error)
+  }
+}
